@@ -1,0 +1,55 @@
+body {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(0, rgba(89,9,121,1) 0%, rgba(160,56,213,1) 100%);
+}
+
+.player {
+    display: flex;
+    justify-content:space-between;
+    width: 900px;
+    height: 350px;
+    border-radius: 2rem;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0,0,0,0.24);
+    overflow: hidden;
+}
+
+.cover {
+    display: flex;
+    background: #000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.cover .img-wrapper{
+    width: 50%;
+}
+
+.cover .img-wrapper img{
+    width: 100%;
+}
+
+.cover p{
+    color: white;
+}
+
+.board {
+    width: 70%;
+}
+
+.board button{
+    border: none;
+    background: none;
+}
+
+.board button i::before{
+    font-size: 2rem;
+}
