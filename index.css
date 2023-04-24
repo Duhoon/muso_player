@@ -53,3 +53,19 @@ body {
 .board button i::before{
     font-size: 2rem;
 }
+
+
+/* Board */
+
+.board {
+    display: flex;
+    align-items: center;
+}
+.waveform-wrapper{
+
+}
+
+#waveform-canvas {
+    width: 500px;
+    height: 200px;
+}
