@@ -29,10 +29,10 @@ async function displayBuffer(buff){
     console.log(leftChannel);
     let lineOpacity = canvasWidth / leftChannel.length ;
     context.save();
-    context.fillStyle = "#020";
-    context.fillRect(0, 0, canvasWidth, canvasHeight);
-    context.strokeStyle = '#121';
-    context.globalCompositeOperation = 'lighter';
+    // context.fillStyle = "#000";
+    // context.fillRect(0, 0, canvasWidth, canvasHeight);
+    context.strokeStyle = '#cbcbcb';
+    context.globalCompositeOperation = 'color';
     context.translate(0, canvasHeight / 2.6);
     context.globalAlpha = 0.06 ;
     context.lineWidth=1;
