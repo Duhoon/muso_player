@@ -41,31 +41,36 @@ body {
     color: white;
 }
 
+/* Board */
+
 .board {
     width: 70%;
+    display: flex;
+    align-items: center;
 }
 
-.board button{
+.board button {
+    width: 2rem;
+    height: 2rem;
     border: none;
     background: none;
+    margin-left : 1rem;
 }
 
 .board button i::before{
     font-size: 2rem;
 }
 
-
-/* Board */
-
-.board {
-    display: flex;
-    align-items: center;
+.board button:hover {
+    cursor: pointer;
 }
+
 .waveform-wrapper{
 
 }
 
 #waveform-canvas {
-    width: 500px;
+    width: 400px;
     height: 200px;
+    margin-left: 1.5rem;
 }

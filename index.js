@@ -20,32 +20,43 @@ track.connect(audioContext.destination);
 // CANVAS
 let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
-const canvasWidth = 500, canvasHeight = 300;
+const canvasWidth = 500, canvasHeight = 200;
 
 
 async function displayBuffer(buff){
+    const drawLines = 600;
     let leftChannel = buff.getChannelData(0);
+    console.log(leftChannel);
     let lineOpacity = canvasWidth / leftChannel.length ;
     context.save();
-    context.fillStyle = "#222";
+    context.fillStyle = "#020";
     context.fillRect(0, 0, canvasWidth, canvasHeight);
-    context.strokeStyle = "#121";
+    context.strokeStyle = '#121';
     context.globalCompositeOperation = 'lighter';
-    context.translate(0, canvasHeight / 2);
+    context.translate(0, canvasHeight / 2.6);
     context.globalAlpha = 0.06 ;
-    for ( let i = 0 ; i < leftChannel.length; i++){
-        var x = Math.floor( canvasWidth * i / leftChannel.length );
-        var y = leftChannel[i] * canvasHeight / 2 ;
-        context.beginPath();
-        context.moveTo( x, 0);
-        context.lineTo(x+1, y);
+    context.lineWidth=1;
+
+    const totalLength = leftChannel.length;
+    const eachBlock = Math.floor(totalLength / drawLines);
+    const lineGap = (canvasWidth/drawLines);
+
+    context.beginPath();
+    for ( let i = 0 ; i < drawLines; i++){
+        var audioBuffKey = Math.floor(eachBlock * i);
+        var x = i * lineGap;
+        var y = leftChannel[audioBuffKey] * canvasHeight / 4 ;
+        context.moveTo(x, y / 2);
+        context.lineTo(x, -y / 2);
         context.stroke();
     }
     context.restore();
     console.log("done");
 }
 
-const playBtn = document.querySelector("button");
+const buttons = document.querySelectorAll("button");
+const playBtn = buttons[0];
+const stopBtn = buttons[1];
 playBtn.addEventListener('click', function(){
     if(audioContext.state === 'suspended'){
         audioContext.resume();
@@ -63,14 +74,18 @@ playBtn.addEventListener('click', function(){
         audioElement.pause();
         this.dataset.playing = 'false';
         target.remove("fa-pause");
-        target.add("fa-play")
+        target.add("fa-play");
     }
 }, false);
 
+stopBtn.addEventListener('click', function(){
+    if(playBtn.dataset.playing === 'true'){
+        playBtn.dataset.playing = 'false';
+        icon = playBtn.childNodes[1].classList;
+        icon.remove("fa-pause");
+        icon.add("fa-play");
+    }
 
-
-const pauseBtn = document.createElement("div");
-const stopBtn = document.createElement("div");
-
-
-
+    audioElement.pause();
+    audioElement.currentTime = 0;
+})
