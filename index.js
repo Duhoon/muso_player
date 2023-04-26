@@ -54,6 +54,9 @@ async function displayBuffer(buff){
     console.log("done");
 }
 
+
+// INTERACE
+
 const buttons = document.querySelectorAll("button");
 const playBtn = buttons[0];
 const stopBtn = buttons[1];
@@ -81,13 +84,18 @@ playBtn.addEventListener('click', function(){
         this.dataset.playing = 'true';
         target.remove("fa-play");
         target.add("fa-pause")
-
+        
         // Change playtime 
-        playtimeInterval = setInterval(()=>{
-            const currentTime = new Date(audioContext.currentTime * 1000);
+        playtimeInterval = function(){return setInterval(()=>{
+            const currentTime = new Date(audioElement.currentTime * 1000);
+
+            const currentMinutes = currentTime.getMinutes();
+            const currentSeconds = currentTime.getSeconds();
+            const currentMilliseconds = currentTime.getMilliseconds();
+
             playtime.textContent = 
-                `${currentTime.getMinutes()}:${currentTime.getSeconds()}:${currentTime.getMilliseconds()}`
-        }, 10)
+                `${currentMinutes < 10 ? '0' + currentMinutes : currentMinutes}:${currentSeconds < 10 ? '0' + currentSeconds : currentSeconds}:${currentMilliseconds < 10 ? '0' + currentMilliseconds : currentMilliseconds}`;
+        }, 10)}();
         
     } else if (this.dataset.playing === 'true'){
         audioElement.pause();
