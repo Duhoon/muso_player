@@ -57,6 +57,17 @@ async function displayBuffer(buff){
 const buttons = document.querySelectorAll("button");
 const playBtn = buttons[0];
 const stopBtn = buttons[1];
+
+
+const playtime = document.querySelector(".playtime");
+const playtimeSet = {
+    minutes : "00",
+    seconds : "00",
+    milliseconds : "00"
+}
+let playtimeInterval;
+const cursortime = document.querySelector(".cursortime");
+
 playBtn.addEventListener('click', function(){
     if(audioContext.state === 'suspended'){
         audioContext.resume();
@@ -65,16 +76,26 @@ playBtn.addEventListener('click', function(){
     let target = this.childNodes[1].classList
 
     if(this.dataset.playing === 'false'){
+        // Modify Icon 
         audioElement.play();
         this.dataset.playing = 'true';
         target.remove("fa-play");
         target.add("fa-pause")
+
+        // Change playtime 
+        playtimeInterval = setInterval(()=>{
+            const currentTime = new Date(audioContext.currentTime * 1000);
+            playtime.textContent = 
+                `${currentTime.getMinutes()}:${currentTime.getSeconds()}:${currentTime.getMilliseconds()}`
+        }, 10)
         
     } else if (this.dataset.playing === 'true'){
         audioElement.pause();
         this.dataset.playing = 'false';
         target.remove("fa-pause");
         target.add("fa-play");
+
+        clearInterval(playtimeInterval);
     }
 }, false);
 
@@ -84,8 +105,11 @@ stopBtn.addEventListener('click', function(){
         icon = playBtn.childNodes[1].classList;
         icon.remove("fa-pause");
         icon.add("fa-play");
+        playtime.textContent = `00:00:00`;
     }
 
+    clearInterval(playtimeInterval);
     audioElement.pause();
     audioElement.currentTime = 0;
+    audioContext.currentTime = 0;
 })
