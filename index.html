@@ -20,12 +20,6 @@
                 <p>Glass Animals - Dreamland</p>
             </div>
             <div class="board">
-                <button data-playing="false" role="switch" aria-checked="false">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-                <button data-playing="false" role="button">
-                    <i class="fa-solid fa-stop"></i>
-                </button>
                 <div class="waveform-wrapper">
                     <canvas id="waveform-canvas">
                     </canvas>
@@ -33,6 +27,14 @@
                         <span class="minutes">00</span>:<span class="seconds">00</span>:<span class="milliseconds">00</span>
                     </p>
                     <p class="cursortime">00:00:00</p>
+                    <div class="button-group">
+                        <button data-playing="false" role="switch" aria-checked="false">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button data-playing="false" role="button">
+                            <i class="fa-solid fa-stop"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

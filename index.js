@@ -84,6 +84,8 @@ playBtn.addEventListener('click', function(){
         this.dataset.playing = 'true';
         target.remove("fa-play");
         target.add("fa-pause")
+
+        const [currentMinutesView, currentSecondsView, currentMillisecondsView] = playtime.children;
         
         // Change playtime 
         playtimeInterval = function(){return setInterval(()=>{
@@ -91,10 +93,11 @@ playBtn.addEventListener('click', function(){
 
             const currentMinutes = currentTime.getMinutes();
             const currentSeconds = currentTime.getSeconds();
-            const currentMilliseconds = currentTime.getMilliseconds();
+            const currentMilliseconds = Math.floor(currentTime.getMilliseconds() / 10);
 
-            playtime.textContent = 
-                `${currentMinutes < 10 ? '0' + currentMinutes : currentMinutes}:${currentSeconds < 10 ? '0' + currentSeconds : currentSeconds}:${currentMilliseconds < 10 ? '0' + currentMilliseconds : currentMilliseconds}`;
+            currentMinutesView.textContent = currentMinutes < 10 ? '0' + currentMinutes : currentMinutes ;
+            currentSecondsView.textContent = currentSeconds < 10 ? '0' + currentSeconds : currentSeconds ;
+            currentMillisecondsView.textContent = currentMilliseconds < 10 ? '0' + currentMilliseconds : currentMilliseconds ;
         }, 10)}();
         
     } else if (this.dataset.playing === 'true'){
@@ -108,16 +111,21 @@ playBtn.addEventListener('click', function(){
 }, false);
 
 stopBtn.addEventListener('click', function(){
+    const [currentMinutesView, currentSecondsView, currentMillisecondsView] = playtime.children;
+
     if(playBtn.dataset.playing === 'true'){
         playBtn.dataset.playing = 'false';
         icon = playBtn.childNodes[1].classList;
         icon.remove("fa-pause");
         icon.add("fa-play");
-        playtime.textContent = `00:00:00`;
     }
 
     clearInterval(playtimeInterval);
     audioElement.pause();
     audioElement.currentTime = 0;
     audioContext.currentTime = 0;
+
+    currentMinutesView.textContent = '00' ;
+    currentSecondsView.textContent = '00' ;
+    currentMillisecondsView.textContent = '00' ;
 })
