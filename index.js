@@ -52,14 +52,16 @@ async function displayBuffer(buff){
     }
     context.restore();
     console.log("done");
+    console.log(leftChannel.length);
 }
 
 
 // INTERACE
 
 const buttons = document.querySelectorAll("button");
-const playBtn = buttons[0];
-const stopBtn = buttons[1];
+const beforeBtn = buttons[0];
+const playBtn = buttons[1];
+const stopBtn = buttons[2];
 
 
 const playtime = document.querySelector(".playtime");

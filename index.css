@@ -12,7 +12,25 @@ body {
     padding: 0;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(0, rgba(89,9,121,1) 0%, rgba(160,56,213,1) 100%);
+    background: radial-gradient(circle at center, rgba(89,9,121,1), rgba(160,56,213,1));
+    animation: background-gradient 2s infinite ease-in-out alternate;
+}
+
+@keyframes background-gradient {
+    0% {
+        background-size: 1000% 1000%;
+        background-position: 50% 50%;
+    }
+
+    50% {
+        background-size: 100% 100%;
+        background-position: 50% 50%;
+    }
+
+    100%{
+        background-size: 1000% 1000%;
+        background-position: 50% 50%;
+    }
 }
 
 .player {
