@@ -1,0 +1,23 @@
+{
+  "name": "webaudioapi",
+  "version": "1.0.0",
+  "description": "Web Music Player",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-Duhoon:Duhoon/muso_player.git"
+  },
+  "keywords": [
+    "media"
+  ],
+  "author": "412ock",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2"
+  }
+}

@@ -7,7 +7,7 @@ const track = audioContext.createMediaElementSource(audioElement);
 track.connect(audioContext.destination);
 
 (function(){
-   fetch("music.mp3")
+   fetch("../music.mp3")
     .then( response => response.arrayBuffer() )
     .then( arraybuffer => {
         audioContext.decodeAudioData(arraybuffer, buffer => {
